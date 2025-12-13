@@ -19,11 +19,13 @@ function MessagingPage() {
 
             <div className='bottomWrapper'>
                 <div>
-                    <input type="text" placeholder='Write Something ... ' />
+                    <input type="text" 
+                    placeholder='Write Something... '
+                    />
                 </div>
                 <div>
                     <button>
-                        send
+                        Send
                     </button>
                 </div>
             </div>

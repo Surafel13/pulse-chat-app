@@ -56,7 +56,7 @@ function Header() {
                                     <img src={img1} alt="img" />
                                 </div>
                                 <div className='NameContainer'>
-                                    <h6>ksanjndsaojdsalsad,msna,ds</h6>
+                                    <h6>Name</h6>
                                 </div>
                             </div>
 

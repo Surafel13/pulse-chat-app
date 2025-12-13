@@ -1,3 +1,12 @@
+.MainWrapper{
+    padding-top: 20px;
+    width: 330px;
+    margin: 0px 10px;
+    
+}
+
+/* Messaging bar part */
+
 .UserBar{
     position: fixed;
     width: 250px;
@@ -37,6 +46,60 @@
     margin-left: 5px;
 }
 
-.blackbody{
-    background-color: black;
+
+/* Header Part  */
+
+.HeaderWrapper{
+    display: flex;
+    gap: 20px;
 }
+
+.HeaderWrapper button{
+    width: 80px;
+    font-size: 13px;
+    border: none;
+    background-color:azure ;
+    margin-right: -17px;
+    border-radius: 5px;
+    padding: 3px;
+    margin-left: 10px;
+    height: 40px;
+}
+
+.HeaderWrapper button:hover{
+    background-color: #0D6EFD;
+    color: white;
+}
+
+.informationSection{
+    display: flex;
+    gap : 10px;
+    margin: 0px 10px;
+    height: 40px;
+}
+
+.imageWrapper{
+    border-radius: 50px;   
+}
+.imageWrapper img{
+    width: 50px;
+    border-radius: 80px;
+}
+
+.settingBar{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border: 1px black solid;
+    border-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 100px;
+    right: 0;
+}
+
+.settingBar button{
+    border: 0;
+    border-bottom: 1px black solid;
+    padding: 10px ;
+}
+

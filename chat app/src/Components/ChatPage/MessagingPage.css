@@ -1,0 +1,51 @@
+.MessagingArea{
+    height: 420px;
+    background-color: aqua;
+    width: 330px;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.SenderMessage{
+    left: 0;
+
+}
+.ReciverMessage{
+    border: 1px black solid;
+    right: 0;
+}
+
+.bottomWrapper{
+    display: flex;
+    gap: 10px;
+    background-color: white;
+    border: 1px black solid;
+    width: 330px;
+    padding: 15px 5px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.bottomWrapper input{
+    width: 210px;
+    padding: 10px 12px;
+    margin: 4px 2px;
+    margin-left: 15px;
+    /* border-radius: 27px; */
+    height: 40px;
+
+}
+
+
+.bottomWrapper button{
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #0D6EFD;
+    color: white;
+    border: none;
+    padding: 0px 14px;
+}

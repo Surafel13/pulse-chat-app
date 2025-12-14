@@ -174,7 +174,7 @@ function Auth() {
                                                 className="eyeBtn"
                                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                             >
-                                                {showConfirmPassword ?  <FaEye /> : <FaEyeSlash />}
+                                                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                                             </button>
                                         </div>
                                         <div>

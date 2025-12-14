@@ -65,7 +65,17 @@
     color: white;
     border: none;
     padding: 0px 14px;
+    opacity: 0.6;           
+    cursor: not-allowed;
+    transition: all 0.3s ease;
 }
+
+.bottomWrapper button.sendData {
+    background-color: #2B7FFF;
+    opacity: 1;
+    cursor: pointer;
+}
+
 
 @media (max-width : 376px) {
     .MessagingArea {

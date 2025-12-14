@@ -1,63 +1,101 @@
-.MessagingArea{
-    height: 420px;
-    width: 100%;
+.MessagingArea {
+    height: 600px;
+    width: 375px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background-color: cadetblue;
-
+    background-color: #F9FAFB;
 }
 
-.SenderMessage{
-    border: 1px black solid;
+.SenderMessage {
     border-radius: 15px;
-    padding: 5px ;
+    padding: 5px;
     width: 250px;
-    background-color: #0D6EFD;
-    color: white;
+    background-color: #bec2c9;
+    color: black;
     margin-top: 9px;
     margin-left: 3px;
-
+    font-size: 14px;
 
 }
-.ReciverMessage{
-    border: 1px black solid;
+
+.ReciverMessage {
     border-radius: 15px;
-    padding: 5px ;
+    padding: 5px;
     width: 250px;
-    background-color: blue;
+    background-color: #2B7FFF;
     color: white;
     margin-left: 120px;
+    font-size: 14px;
+
 }
 
-.bottomWrapper{
+.ReciverMessage small,
+.SenderMessage small {
+    margin-left: 180px;
+}
+
+.bottomWrapper {
     display: flex;
     gap: 15px;
-    background-color: black;
-    border: 1px black solid;
+    background-color: #FFFFFF;
     width: 350px;
     padding: 15px 5px;
     margin-left: 10px;
     margin-top: 20px;
+    bottom: 0;
 }
 
-.bottomWrapper input{
+.bottomWrapper input {
     width: 210px;
     padding: 10px 12px;
     margin-left: 10px;
     border-radius: 27px;
-    border: 3px #0D6EFD solid;
     height: 40px;
-
+    background-color: #F3F4F6;
+    border: none;
 }
 
 
-.bottomWrapper button{
+.bottomWrapper button {
     width: 70px;
     height: 40px;
     border-radius: 20px;
-    background-color: #0D6EFD;
+    background-color: #95BFFF;
     color: white;
     border: none;
     padding: 0px 14px;
+}
+
+@media (max-width : 376px) {
+    .MessagingArea {
+        height: 450px;
+    }
+}
+
+@media (max-width : 391px) {
+    .MessagingArea {
+        width: 365px;
+        margin-right: 10px;
+        margin-left: -15px;
+    }
+
+    .ReciverMessage, .SenderMessage {
+        width: 245px;
+    }
+
+    .ReciverMessage small, .SenderMessage small {
+        margin-left: 160px;
+    }
+}
+
+@media (max-width : 361px){
+    .MessagingArea{
+        height: 530px;
+    }
+
+    .ReciverMessage, .SenderMessage {
+        width: 225px;
+    }
+
 }

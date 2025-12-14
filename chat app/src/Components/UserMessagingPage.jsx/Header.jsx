@@ -9,6 +9,7 @@ function Header() {
     const [isOpen, setIsOpen] = useState(false)
     const [settingBar, setSettingBar] = useState(false)
 
+
     const toggleIsOpen = () => {
         setIsOpen(!isOpen);
     }
@@ -18,7 +19,8 @@ function Header() {
     }
 
     return (
-        <div className='MainWrapper'>
+
+        <div className='MainWrapper container sm-h-75'>
             {isOpen ?
                 <div className='UserBar'>
                     <div className='barHeader'>
@@ -42,13 +44,13 @@ function Header() {
 
                 </div> :
                 <></>}
-            <div className='ChattingPage'>
-                <div className={`${isOpen ? "d-none" : ""}`}>
+            <div className='ChattingPage vh-100'>
+                <div className={`${isOpen ? "d-none" : "h-100"}`}>
                     <div >
                         <div className='HeaderWrapper'>
                             <div>
                                 <button onClick={toggleIsOpen}>
-                                    ☰ Messages
+                                    ☰ 
                                 </button>
                             </div>
                             <div className='informationSection'>
@@ -57,12 +59,13 @@ function Header() {
                                 </div>
                                 <div className='NameContainer'>
                                     <h6>Name</h6>
+                                    <p>Status</p>
                                 </div>
                             </div>
 
                             <div className='SettingButton'>
                                 <button onClick={toggleSettingBar}>
-                                    :
+                                    ⋮
                                 </button>
                             </div>
                         </div>

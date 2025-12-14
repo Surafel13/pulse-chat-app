@@ -1,10 +1,12 @@
 .MainWrapper{
     padding-top: 20px;
-    width: 380px;
-    height: 650px;
-    /* margin: 10px 10px; */
-    border: 1px black solid;
-    background-color: black;
+    /* width: 576px; */
+    height: 900px;
+    margin: 10px 10px;
+    background-color: #FFFFFF;
+    /* border: 1px black solid; */
+    position: fixed;
+
     
 }
 
@@ -51,9 +53,9 @@
 }
 
 .ChattingPage{
-    background-color: black;
+    background-color: #FFFFFF;
     height: 100;
-    color: white;
+    color: black;
     font-size: 13px;
 }
 
@@ -71,14 +73,19 @@
 }
 .NameContainer{
     width: 100px;
+    height: 60px;
     overflow: hidden;
 }
 
+.NameContainer p{
+    margin-top: -9px;
+}
+
 .HeaderWrapper button{
-    width: 80px;
+    width: 50px;
     font-size: 13px;
     border: none;
-    background-color:azure ;
+    background-color:white ;
     margin-right: -17px;
     border-radius: 5px;
     padding: 3px;
@@ -87,8 +94,7 @@
 }
 
 .HeaderWrapper button:hover{
-    background-color: #0D6EFD;
-    color: white;
+    background-color: #dfe4e9;
 }
 
 .informationSection{
@@ -96,6 +102,7 @@
     gap : 10px;
     margin: 0px 10px;
     height: 40px;
+    width: 200px;
 }
 
 .imageWrapper{
@@ -114,9 +121,8 @@
     width: 200px;
     border: 1px black solid;
     border-bottom: 0px;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-left: 170px;
-    right: 0;
 }
 
 .settingBar button{
@@ -134,4 +140,22 @@
 .SettingButton button{
     width: 40px;
     margin-left: 40px;
+}
+
+@media (max-width : 391px){
+    .informationSection{
+        width: 160px;
+    }
+    .settingBar{
+        margin-left: 135px;
+    }
+}
+
+@media (max-width : 361px){
+    .informationSection{
+        width: 140px;
+    }
+    .settingBar{
+        margin-left: 127px;
+    }
 }

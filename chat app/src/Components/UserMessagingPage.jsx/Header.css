@@ -1,10 +1,8 @@
 .MainWrapper{
     padding-top: 20px;
-    /* width: 576px; */
     height: 900px;
     margin: 10px 10px;
     background-color: #FFFFFF;
-    /* border: 1px black solid; */
     position: fixed;
 
     
@@ -14,7 +12,7 @@
 
 .UserBar{
     position: fixed;
-    width: 250px;
+    width: 100%;
     left: 0;
     top: 0;
     height: 100%;
@@ -27,13 +25,18 @@
     justify-content: space-around;
     padding-top: 40px;
     height: 60px;
-
+    background-color: white;
     
 }
 
 .barHeader button{
-    height: 30px;
-    background-color: red;
+    height: 40px;
+    width: 40px;
+    background-color: rgb(160, 50, 50);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    margin-top: -10px;
 }
 
 .InputWrapper{
@@ -43,13 +46,23 @@
 }
 .InputWrapper input{
     padding: 12px;
-    width: 210px;
+    width: 300px;
+    border: none;
     border-radius: 12px;
+    background-color: #F3F4F6;
 }
 
-.usersWrapper li{
-    margin: 15px 0px;
-    margin-left: 5px;
+
+.usersWrapper{
+    display: flex;
+    padding: 0px 20px;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.usersWrapper small{
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
 
 .ChattingPage{

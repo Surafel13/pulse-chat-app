@@ -35,11 +35,49 @@ function Header() {
                     <div><hr /></div>
                     <div>
                         <div className='usersWrapper'>
-                            <li><a href="#">User1</a></li>
-                            <li><a href="#">User2</a></li>
-                            <li><a href="#">User3</a></li>
-                            <li><a href="#">User4</a></li>
+                            <div className='imageWrapper'>
+                                <img src={img1} alt="img" />
+                            </div>
+                            <div>
+                                <div>
+                                    <h6>Name name</h6>
+                                </div>
+                                <div>
+                                    <small>message</small>
+                                </div>
+                            </div>
                         </div>
+                        <hr />
+                        <div className='usersWrapper'>
+                            <div className='imageWrapper'>
+                                <img src={img1} alt="img" />
+                            </div>
+                            <div>
+                                <div>
+                                    <h6>Name name</h6>
+                                </div>
+                                <div>
+                                    <small>message</small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className='usersWrapper'>
+                            <div className='imageWrapper'>
+                                <img src={img1} alt="img" />
+                            </div>
+                            <div>
+                                <div>
+                                    <h6>Name name</h6>
+                                </div>
+                                <div>
+                                    <small>message</small>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+
                     </div>
 
                 </div> :
@@ -50,7 +88,7 @@ function Header() {
                         <div className='HeaderWrapper'>
                             <div>
                                 <button onClick={toggleIsOpen}>
-                                    ☰ 
+                                    ☰
                                 </button>
                             </div>
                             <div className='informationSection'>

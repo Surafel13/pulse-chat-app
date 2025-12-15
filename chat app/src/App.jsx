@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './bootstrap.css'
 
-import Header from './Components/UserMessagingPage.jsx/Header'
-import MessagingPage from './Components/ChatPage/MessagingPage'
+import UsersBar from './Components/UsersBar/UsersBar'
+import Messaging from './Components/Messaging/Messaging'
 import SplashScreen from './Components/SplashScreen/SplashScreen'
 import Auth from './Components/Auth/Auth'
 import Verification from './Components/Verification/Verification'
@@ -14,16 +14,18 @@ function App() {
 
   return (
     <>
-      {/* {showSplash ? (
+      {showSplash ? (
         <SplashScreen onFinish={() => setShowSplash(false)} />
       ) : (
-        <Header />
-      )} */}
+        <></>
+      )}
    <Routes>
       <Route path="/" element={<Auth />} />
-      <Route path="/verification" element={<VerifyEmail />} />
+      <Route path="/verification" element={<Verification />} />
+      <Route path="/Messaging" element={<Messaging />} />
+      <Route path="/UsersBar" element={<UsersBar />} />
     </Routes>
-
+    
 
     </>
   )

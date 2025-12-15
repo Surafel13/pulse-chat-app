@@ -29,16 +29,6 @@
     
 }
 
-.barHeader button{
-    height: 40px;
-    width: 40px;
-    background-color: rgb(160, 50, 50);
-    color: white;
-    border: none;
-    border-radius: 40px;
-    margin-top: -10px;
-}
-
 .InputWrapper{
     padding: 4px 0px;
     text-align: center;
@@ -50,6 +40,7 @@
     border: none;
     border-radius: 12px;
     background-color: #F3F4F6;
+    outline: none;
 }
 
 

@@ -1,7 +1,10 @@
 import React from 'react'
 import './Verification.css'
+import { useNavigate } from 'react-router-dom'
 
 function Verification() {
+    const navigate = useNavigate()
+
     return (
         <div className='Main-container'>
             <div className="verify-container">
@@ -15,7 +18,7 @@ function Verification() {
                 </p>
 
 
-                <button >Resend Verification Email</button>
+                <button onClick={() => navigate('/UsersBar')}>Resend Verification Email</button>
 
             </div>
         </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import img1 from './../../Img/cat-1.jpg'
 import MessagingPage from '../ChatPage/MessagingPage';
 import './Messaging.css'
 import { useNavigate } from 'react-router-dom';
+import img1 from './../../Img/cat-1.jpg'
 
 function Messaging() {
 

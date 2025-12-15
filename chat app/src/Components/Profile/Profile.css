@@ -1,0 +1,48 @@
+img{
+    width: 100%;
+}
+
+
+
+.UserInfoWrapper{
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.UserInfoWrapper button{
+    border: none;
+    margin-left: 20px;
+    margin-top: 20px;
+    z-index: 10;
+    position: fixed;
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: column;
+    margin-top: -60px;
+    margin-left: 15px;
+}
+
+.AccountInfoWrapper{
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.AccountInfoWrapper div{
+    margin: 10px 0px;
+}
+
+.Infos{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 100%;
+}
+
+.Infos small{
+    margin-top: -20px;
+}

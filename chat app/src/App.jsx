@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes, Route } from "react-router-dom";
 import './bootstrap.css'
 
 import UsersBar from './Components/UsersBar/UsersBar'
@@ -6,7 +7,7 @@ import Messaging from './Components/Messaging/Messaging'
 import SplashScreen from './Components/SplashScreen/SplashScreen'
 import Auth from './Components/Auth/Auth'
 import Verification from './Components/Verification/Verification'
-import { Routes, Route } from "react-router-dom";
+import Profile from './Components/Profile/Profile';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
   return (
     <>
-      {showSplash ? (
+      {/* {showSplash ? (
         <SplashScreen onFinish={() => setShowSplash(false)} />
       ) : (
         <></>
@@ -24,7 +25,11 @@ function App() {
       <Route path="/verification" element={<Verification />} />
       <Route path="/Messaging" element={<Messaging />} />
       <Route path="/UsersBar" element={<UsersBar />} />
-    </Routes>
+    </Routes> */}
+
+    <Profile/>
+
+
     
 
     </>

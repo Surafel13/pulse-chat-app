@@ -1,7 +1,6 @@
 .MainWrapper{
     padding-top: 20px;
     height: 900px;
-    margin: 10px 10px;
     background-color: #FFFFFF;
     position: fixed;
 
@@ -41,6 +40,10 @@
     border-radius: 12px;
     background-color: #F3F4F6;
     outline: none;
+}
+
+.InputWrapper input:focus{
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.767);
 }
 
 

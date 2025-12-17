@@ -9,7 +9,7 @@ function Profile() {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <>
             <div className='UserInfoWrapper'>
                 <div>
                     <button onClick={() => navigate('/UsersBar')}>
@@ -38,12 +38,12 @@ function Profile() {
                     <p>Abebebesobela</p>
                     <small>Username</small>
                 </div>
-                <div className='Infos'>
-                    <p>I am abebnksadnjsadnjasndnklaehflufajndfsjeifundsnmdnfkjsanue.</p>
+                <div className='Infos bio'>
+                    <p>I am abebnksadnjsadnjasnd nklaehflu fajndfsjeifun dsnmdnfkjsanue.</p>
                     <small>Bio</small>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

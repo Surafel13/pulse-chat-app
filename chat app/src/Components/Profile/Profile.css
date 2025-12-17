@@ -7,7 +7,6 @@ img{
 .UserInfoWrapper{
     border-bottom: 1px solid black;
     margin-bottom: 15px;
-    width: 100%;
 }
 
 .UserInfoWrapper button{
@@ -45,4 +44,11 @@ img{
 
 .Infos small{
     margin-top: -20px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+
+.bio{
+    width: 300px;
+    overflow:scroll;
 }

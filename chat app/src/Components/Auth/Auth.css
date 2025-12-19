@@ -175,3 +175,12 @@ small {
   margin-bottom: 1rem;
   text-align: left;
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"] {
+    padding-right: 0;
+}

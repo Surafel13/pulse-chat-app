@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { sendDataToDatabase, subscribeToData } from '../firebase';
 
+import './FirebaseDemo.css';
+
 const FirebaseDemo = () => {
     const [items, setItems] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -41,49 +43,54 @@ const FirebaseDemo = () => {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: '600px' }}>
-            <div className="card shadow-sm">
-                <div className="card-header bg-primary text-white">
-                    <h5 className="mb-0">Firebase Database Demo</h5>
+        <div className="firebase-demo-container">
+            <div className="demo-card">
+                <div className="demo-header">
+                    <h2>🔥 FireStore Demo</h2>
+                    <p style={{ margin: '0.5rem 0 0', opacity: 0.9, fontSize: '0.9rem' }}>Real-time Database Connection</p>
                 </div>
-                <div className="card-body">
-                    <p className="text-muted small mb-4">
-                        Enter text below to send it to the 'demo-items' collection in Cloud Firestore.
-                    </p>
 
-                    <form onSubmit={handleSubmit} className="mb-4">
-                        <div className="input-group">
+                <div className="demo-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="modern-input-group">
                             <input
                                 type="text"
-                                className="form-control"
-                                placeholder="Enter some data..."
+                                className="modern-input"
+                                placeholder="Type a message..."
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 disabled={loading}
                             />
                             <button
-                                className="btn btn-primary"
+                                className="modern-btn"
                                 type="submit"
                                 disabled={loading}
                             >
-                                {loading ? 'Sending...' : 'Send Data'}
+                                {loading ? 'Sending...' : 'Send'}
                             </button>
                         </div>
                     </form>
 
-                    <h6 className="border-bottom pb-2 mb-3">Live Data from Firestore:</h6>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+                        <h6 style={{ margin: 0, color: '#718096', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '1px', fontWeight: 'bold' }}>Live Data</h6>
+                        <span style={{ fontSize: '0.8rem', marginLeft: 'auto', color: loading ? '#667eea' : '#a0aec0' }}>
+                            {loading ? 'Syncing...' : 'Connected'}
+                        </span>
+                    </div>
+
 
                     {items.length === 0 ? (
-                        <div className="text-center text-muted py-3">
-                            No data found yet. Try adding something!
+                        <div className="empty-state">
+                            <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📭</div>
+                            No messages yet. <br /> Be the first to say hello!
                         </div>
                     ) : (
-                        <ul className="list-group">
+                        <ul className="data-list">
                             {items.map((item) => (
-                                <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>{item.text}</span>
-                                    <span className="badge bg-secondary rounded-pill" style={{ fontSize: '0.7em' }}>
-                                        {item.id.substring(0, 6)}...
+                                <li key={item.id} className="data-item">
+                                    <span className="item-text">{item.text}</span>
+                                    <span className="item-id">
+                                        {item.id.substring(0, 4)}
                                     </span>
                                 </li>
                             ))}

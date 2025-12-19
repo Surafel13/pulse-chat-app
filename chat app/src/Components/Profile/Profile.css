@@ -1,54 +1,128 @@
-img{
+/* src/Components/Profile/Profile.css */
+.ProfileContainer {
+    /* This class might need to be added to the Profile JSX wrapper if not present */
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: white;
+    position: relative;
 }
 
-
-
-.UserInfoWrapper{
-    border-bottom: 1px solid black;
-    margin-bottom: 15px;
-}
-
-.UserInfoWrapper button{
-    border: none;
-    margin-left: 20px;
-    margin-top: 20px;
+/* Back button */
+.UserInfoWrapper button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     z-index: 10;
-    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.userInfo{
+.UserInfoWrapper button:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* User Image */
+.UserInfoWrapper img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.userInfo {
+    padding: 0 2rem;
+    margin-top: -3rem;
+    /* Overlap image */
+    position: relative;
+    z-index: 5;
+}
+
+.userInfo h2 {
+    background: white;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.userInfo p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+/* Account Info Section */
+.AccountInfoWrapper {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    margin-top: -60px;
-    margin-left: 15px;
+    gap: 1.5rem;
 }
 
-.AccountInfoWrapper{
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-
+.AccountInfoWrapper h5 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 0.5rem;
 }
 
-.AccountInfoWrapper div{
-    margin: 10px 0px;
+.Infos {
+    background: #f7fafc;
+    padding: 1rem;
+    border-radius: var(--radius-md, 12px);
+    border: 1px solid #edf2f7;
+    transition: transform 0.2s;
 }
 
-.Infos{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    max-width: 100%;
+.Infos:hover {
+    transform: translateY(-2px);
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.Infos small{
-    margin-top: -20px;
-    font-family:'Times New Roman', Times, serif;
-    font-weight: bolder;
+.Infos .title {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
 }
 
-.bio{
-    width: 300px;
-    overflow:scroll;
+.Infos p,
+.Infos small {
+    font-family: 'Inter', sans-serif;
+    /* Override Times New Roman */
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 500;
+}
+
+.bio {
+    width: 100%;
+    overflow: visible;
+    line-height: 1.6;
 }

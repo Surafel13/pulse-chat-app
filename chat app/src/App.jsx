@@ -8,7 +8,7 @@ import SplashScreen from './Components/SplashScreen/SplashScreen'
 import Auth from './Components/Auth/Auth'
 import Verification from './Components/Verification/Verification'
 import Profile from './Components/Profile/Profile';
-import FirebaseDemo from './Components/FirebaseDemo';
+
 
 
 function App() {
@@ -27,7 +27,6 @@ function App() {
         <Route path="/Messaging" element={<Messaging />} />
         <Route path="/UsersBar" element={<UsersBar />} />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/firebase-demo" element={<FirebaseDemo />} />
       </Routes>
 
 

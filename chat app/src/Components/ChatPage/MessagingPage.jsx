@@ -28,7 +28,6 @@ function MessagingPage() {
         setFocus(!focus)
     }
 
-    // Auto-scroll to bottom
     const messagesEndRef = React.useRef(null)
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -53,12 +52,12 @@ function MessagingPage() {
     return (
         <div className='ChatSection'>
             <div className='MessagingArea'>
-                {messages.map((msg) => (
-                    <div key={msg.id} className={msg.type === 'sender' ? 'SenderMessage' : 'ReciverMessage'}>
-                        <p>{msg.text}</p>
-                        <small>{msg.time}</small>
-                    </div>
-                ))}
+                <div className='SenderMessage'>
+                    <p>
+                        Sender Messages
+                    </p>
+                    <small>10:50 PM</small>
+                </div>
                 <div ref={messagesEndRef} />
             </div>
             <div className='bottomWrapper'>

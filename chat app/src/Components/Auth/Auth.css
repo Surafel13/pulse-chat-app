@@ -42,7 +42,8 @@
   font-weight: 700;
   margin: 0 0 1.5rem 0;
   background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
 }
@@ -93,14 +94,12 @@
   width: 100%;
   padding: 0.75rem 1rem;
   padding-right: 2.5rem;
-  /* Space for eye icon */
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm, 8px);
   font-size: 1rem;
   outline: none;
   transition: all 0.2s;
   box-sizing: border-box;
-  /* Crucial for width: 100% */
 }
 
 .inputWrapper input:focus {
@@ -136,12 +135,22 @@
   color: white;
   font-weight: 600;
   font-size: 1rem;
-  cursor: pointer;
   margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.LoginButton {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.LoginButtonFocus {
+  cursor: pointer;
+  opacity: 1;
   box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
 }
 
-.LoginButton:hover,
 .LoginButtonFocus:hover {
   opacity: 0.95;
   transform: translateY(-1px);
@@ -178,9 +187,9 @@ small {
 
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
-    display: none;
+  display: none;
 }
 
 input[type="password"] {
-    padding-right: 0;
+  padding-right: 0;
 }

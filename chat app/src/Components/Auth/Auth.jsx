@@ -4,7 +4,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import './Auth.css'
-// import Verification from '../Verification/Verification';
 
 
 
@@ -28,21 +27,21 @@ function Auth() {
         if (name === "confirmPassword") setConfirmPassword(value);
     };
 
-        const CheckPassword = () => {
-      if (!confirmPassword) return null;
+    //     const CheckPassword = () => {
+    //   if (!confirmPassword) return null;
 
-      return password === confirmPassword ? null : (
-        <div className="warning">
-          <small>Check your password again!</small>
-        </div>
-      );
-    };
+    //   return password === confirmPassword ? null : (
+    //     <div className="warning">
+    //       <small>Check your password again!</small>
+    //     </div>
+    //   );
+    // };
 
     const handleSubmit = (e) => {
-    e.preventDefault(); 
-   
-    navigate("/Verification"); 
-  };
+        e.preventDefault();
+
+        navigate("/Verification");
+    };
 
 
 
@@ -74,7 +73,7 @@ function Auth() {
                                     </button>
                                 </div>
                                 <div>
-                                    <form onSubmit={navigate(handleSubmit)}>
+                                    <form onSubmit={handleSubmit}>
                                         <div className='inputWrapper'>
                                             <input
                                                 type="email"
@@ -105,7 +104,7 @@ function Auth() {
                                             </button>
                                         </div>
                                         <div>
-                                            <button className={`${password && email ? 'LoginButtonFocus' : 'LoginButton'}`} type='submit'>
+                                            <button className={email && password ? 'LoginButtonFocus' : 'LoginButton'} type='submit'>
                                                 Log In
                                             </button>
                                         </div>

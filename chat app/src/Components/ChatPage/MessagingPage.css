@@ -1,111 +1,169 @@
+/* Main Chat Area */
+.ChatSection {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: transparent;
+}
+
+/* Message List Area */
 .MessagingArea {
-    height: 600px;
-    width: 375px;
+    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background-color: #F9FAFB;
+    padding: 20px;
+    overflow-y: auto;
+    /* Custom Scrollbar for Webkit */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
-.SenderMessage {
-    border-radius: 15px;
-    padding: 5px;
-    width: 250px;
-    background-color: #bec2c9;
-    color: black;
-    margin-top: 9px;
-    margin-left: 3px;
-    font-size: 14px;
-
+.MessagingArea::-webkit-scrollbar {
+    width: 6px;
 }
 
+.MessagingArea::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+/* Message Bubbles Common Styles */
+.SenderMessage,
 .ReciverMessage {
-    border-radius: 15px;
-    padding: 5px;
-    width: 250px;
-    background-color: #2B7FFF;
+    max-width: 70%;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    word-wrap: break-word;
+}
+
+/* Sender (Left) */
+.SenderMessage {
+    align-self: flex-start;
+    background-color: white;
+    color: var(--text-primary, #333);
+    border-radius: 18px 18px 18px 0;
+    border: 1px solid #eef2f6;
+}
+
+/* Receiver (Right) */
+.ReciverMessage {
+    align-self: flex-end;
+    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
     color: white;
-    margin-left: 120px;
-    font-size: 14px;
-
+    border-radius: 18px 18px 0 18px;
 }
 
-.ReciverMessage small,
+/* Message Text */
+.SenderMessage p,
+.ReciverMessage p {
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+/* Timestamp */
+.SenderMessage small,
+.ReciverMessage small {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    text-align: right;
+    margin-top: 2px;
+}
+
 .SenderMessage small {
-    margin-left: 180px;
+    color: #718096;
 }
 
+.ReciverMessage small {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input Area (Bottom) */
 .bottomWrapper {
+    padding: 15px 20px;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
-    gap: 15px;
-    background-color: #FFFFFF;
-    width: 350px;
-    padding: 15px 5px;
-    margin-left: 10px;
-    margin-top: 20px;
-    bottom: 0;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Input Container */
+.bottomWrapper>div:first-child {
+    flex: 1;
 }
 
 .bottomWrapper input {
-    width: 210px;
-    padding: 10px 12px;
-    margin-left: 10px;
-    border-radius: 27px;
-    height: 40px;
-    background-color: #F3F4F6;
-    border: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    background-color: #f7fafc;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    outline: none;
 }
 
+.bottomWrapper input:focus {
+    background-color: white;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Send Button Container */
+.bottomWrapper>div:last-child {
+    flex-shrink: 0;
+}
 
 .bottomWrapper button {
-    width: 70px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: #4684e0;
-    color: white;
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 22px;
     border: none;
-    padding: 0px 14px;
-    opacity: 0.6;           
-    cursor: not-allowed;
-    transition: all 0.3s ease;
+    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    pointer-events: none;
+    /* Disable click when inactive */
 }
 
 .bottomWrapper button.sendData {
-    background-color: #2B7FFF;
     opacity: 1;
-    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
 }
 
+.bottomWrapper button.sendData:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px rgba(102, 126, 234, 0.3);
+}
 
-@media (max-width : 376px) {
+.bottomWrapper button.sendData:active {
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     .MessagingArea {
-        height: 450px;
-    }
-}
-
-@media (max-width : 391px) {
-    .MessagingArea {
-        width: 365px;
-        margin-right: 10px;
-        margin-left: -15px;
+        padding: 15px;
     }
 
-    .ReciverMessage, .SenderMessage {
-        width: 245px;
+    .SenderMessage,
+    .ReciverMessage {
+        max-width: 85%;
     }
-
-    .ReciverMessage small, .SenderMessage small {
-        margin-left: 160px;
-    }
-}
-
-@media (max-width : 361px){
-    .MessagingArea{
-        height: 530px;
-    }
-
-    .ReciverMessage, .SenderMessage {
-        width: 225px;
-    }
-
 }

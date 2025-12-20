@@ -11,13 +11,13 @@ function Messaging() {
   const [settingBar, setSettingBar] = useState(false)
 
   const toggleSettingBar = () => {
-        setSettingBar(!settingBar)
-    }
+    setSettingBar(!settingBar)
+  }
 
   return (
     <div className='MainWrapper container sm-h-75'>
       <div className='ChattingPage vh-100'>
-        <div >
+        <div className='ChatLayout'>
           <div >
             <div className='HeaderWrapper'>
               <div>
@@ -57,7 +57,7 @@ function Messaging() {
             </div>
           </div>
           <hr />
-          <div>
+          <div className='ChatBody'>
             <MessagingPage />
           </div>
         </div>

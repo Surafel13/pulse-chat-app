@@ -3,10 +3,24 @@ import { useNavigate } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa";
 import img1 from './../../Img/cat-1.jpg'
 import './Profile.css'
+import { useUser } from '../../Context/UserContext';
 
 function Profile() {
 
     const navigate = useNavigate()
+    const { user } = useUser();
+    console.log(user);
+    const [userName, setUserName] = React.useState('');
+
+    React.useEffect(() => {
+        if (user.displayName != null) {
+            setUserName(user.displayName);
+        }
+        else if (user.email != null) {
+            const nameFromEmail = user.email.split('@')[0];
+            setUserName(nameFromEmail);
+        }
+    }, [user]);
 
     return (
         <>
@@ -31,7 +45,7 @@ function Profile() {
                     <h5>Account Information</h5>
                 </div>
                 <div className='Infos'>
-                    <p>email@gmail.com</p>
+                    <p>{user.email}</p>
                     <small>E-Mail</small>
                 </div>
                 <div className='Infos'>

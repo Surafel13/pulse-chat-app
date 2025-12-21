@@ -3,6 +3,7 @@ import MessagingPage from '../ChatPage/MessagingPage';
 import './Messaging.css'
 import { useNavigate } from 'react-router-dom';
 import img1 from './../../Img/cat-1.jpg'
+import { useUser } from '../../Context/UserContext';
 
 function Messaging() {
 
@@ -14,6 +15,21 @@ function Messaging() {
     setSettingBar(!settingBar)
   }
 
+  const { user } = useUser();
+  const [userName, setUserName] = React.useState('');
+
+  React.useEffect(() => {
+
+    if (user.displayName != null) {
+      setUserName(user.displayName);
+    }
+    else if (user.email != null) {
+      const nameFromEmail = user.email.split('@')[0];
+      setUserName(nameFromEmail);
+    }
+  }, [user]);
+
+  console.log(userName);
   return (
     <div className='MainWrapper container sm-h-75'>
       <div className='ChattingPage vh-100'>
@@ -30,7 +46,7 @@ function Messaging() {
                   <img src={img1} alt="img" />
                 </div>
                 <div className='NameContainer'>
-                  <h6>Name</h6>
+                  <h6>{userName}</h6>
                   <p>Status</p>
                 </div>
               </div>

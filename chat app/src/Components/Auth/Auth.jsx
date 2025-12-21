@@ -34,7 +34,6 @@ function Auth() {
         if (name === "confirmPassword") setConfirmPassword(value);
     };
 
-    console.log("Current User:", user);
 
     const handleGoogle = async () => {
         const provider = new GoogleAuthProvider();

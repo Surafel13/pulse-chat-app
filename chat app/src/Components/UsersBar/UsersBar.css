@@ -1,0 +1,119 @@
+/* UsersBar component styles */
+.MainWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.UserBar {
+  width: 300px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(20,20,30,0.06);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 32px);
+  overflow: hidden;
+}
+
+.barHeader h4 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+.InputWrapper {
+  margin-bottom: 8px;
+}
+
+.InputWrapper input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #e6e6e9;
+  outline: none;
+  background: #fafafa;
+}
+
+.UsersList {
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.UserItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 8px;
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+
+.UserItem:hover {
+  background: #f2f6ff;
+}
+
+.imageWrapper img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.06);
+}
+
+.UserInfo h6 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.UserInfo p {
+  margin: 2px 0 0 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.UsersList hr {
+  border: none;
+  border-top: 1px solid #f0f0f2;
+  margin: 6px 0;
+}
+
+.emptyState {
+  padding: 18px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Spinner */
+.spinnerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 4px solid rgba(0,0,0,0.08);
+  border-top-color: #2563eb;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .UserBar {
+    width: 100%;
+    height: auto;
+  }
+}

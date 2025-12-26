@@ -53,7 +53,7 @@ function Auth() {
             }, { merge: true });
 
             setUser(user);
-            navigate("/UsersBar");
+            navigate("/Messaging");
         } catch (error) {
             alert(error.message);
         }
@@ -92,7 +92,7 @@ function Auth() {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 setUser(userCredential.user);
-                navigate("/UsersBar");
+                navigate("/Messaging");
             } catch (err) {
                 alert(err.message);
             }

@@ -29,8 +29,8 @@ function Profile() {
         <>
             <div className='UserInfoWrapper'>
                 <div>
-                    <button onClick={() => navigate('/UsersBar')}>
-                        <FaArrowLeft size={15}/>
+                    <button onClick={() => navigate('/Messaging')}>
+                        <FaArrowLeft size={15} />
                     </button>
                 </div>
                 <div>

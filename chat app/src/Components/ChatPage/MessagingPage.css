@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     position: relative;
-    background: transparent;
+    background: #ffffff;
 }
 
 /* Message List Area */
@@ -14,12 +14,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 20px;
+    gap: 12px;
+    padding: 1.5rem 2rem;
     overflow-y: auto;
-    /* Custom Scrollbar for Webkit */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    background: #f8fafc;
 }
 
 .MessagingArea::-webkit-scrollbar {
@@ -27,44 +25,44 @@
 }
 
 .MessagingArea::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #cbd5e0;
     border-radius: 3px;
 }
 
 /* Message Bubbles Common Styles */
 .SenderMessage,
 .ReciverMessage {
-    max-width: 70%;
-    padding: 12px 16px;
+    max-width: 75%;
+    padding: 10px 16px;
     font-size: 0.95rem;
-    line-height: 1.4;
+    line-height: 1.5;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     word-wrap: break-word;
 }
 
-/* Sender (Left) */
+/* Sender (Left - person you are chatting with) */
 .SenderMessage {
     align-self: flex-start;
     background-color: white;
-    color: var(--text-primary, #333);
-    border-radius: 18px 18px 18px 0;
-    border: 1px solid #eef2f6;
+    color: #2d3748;
+    border-radius: 4px 18px 18px 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #edf2f7;
 }
 
-/* Receiver (Right) */
+/* Receiver (Right - the user themselves) */
 .ReciverMessage {
     align-self: flex-end;
-    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    background: #1488cc;
     color: white;
-    border-radius: 18px 18px 0 18px;
+    border-radius: 18px 18px 4px 18px;
+    box-shadow: 0 4px 12px rgba(20, 136, 204, 0.2);
 }
 
 /* Message Text */
 .SenderMessage p,
 .ReciverMessage p {
     margin: 0;
-    padding-bottom: 5px;
 }
 
 /* Timestamp */
@@ -72,39 +70,33 @@
 .ReciverMessage small {
     display: block;
     font-size: 0.7rem;
-    opacity: 0.7;
-    text-align: right;
-    margin-top: 2px;
+    margin-top: 4px;
+    opacity: 1;
 }
 
 .SenderMessage small {
-    color: #718096;
+    color: #a0aec0;
 }
 
 .ReciverMessage small {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: right;
 }
 
 /* Input Area (Bottom) */
 .bottomWrapper {
-    padding: 15px 20px;
+    padding: 1rem 2rem;
     background: white;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #edf2f7;
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 100%;
-}
-
-/* Input Container */
-.bottomWrapper>div:first-child {
-    flex: 1;
 }
 
 .bottomWrapper input {
-    width: 100%;
+    flex: 1;
     padding: 12px 20px;
-    border-radius: 24px;
+    border-radius: 14px;
     border: 1px solid #e2e8f0;
     background-color: #f7fafc;
     font-size: 0.95rem;
@@ -114,52 +106,42 @@
 
 .bottomWrapper input:focus {
     background-color: white;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-/* Send Button Container */
-.bottomWrapper>div:last-child {
-    flex-shrink: 0;
+    border-color: #1488cc;
+    box-shadow: 0 0 0 3px rgba(20, 136, 204, 0.1);
 }
 
 .bottomWrapper button {
     height: 44px;
     padding: 0 24px;
-    border-radius: 22px;
+    border-radius: 12px;
     border: none;
-    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    background: #1488cc;
     color: white;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.6;
+    opacity: 0.5;
     pointer-events: none;
-    /* Disable click when inactive */
 }
 
 .bottomWrapper button.sendData {
     opacity: 1;
     pointer-events: auto;
-    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
 }
 
 .bottomWrapper button.sendData:hover {
+    background: #107bb8;
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 12px rgba(20, 136, 204, 0.3);
 }
 
-.bottomWrapper button.sendData:active {
-    transform: translateY(0);
-}
-
-/* Responsive Adjustments */
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .MessagingArea {
-        padding: 15px;
+        padding: 1rem;
     }
 
     .SenderMessage,

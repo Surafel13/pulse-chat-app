@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaCamera, FaSave, FaUserEdit, FaExpand } from "react-icons/fa";
 import './Profile.css';
 import { useUser } from '../../Context/UserContext';
-import { db } from '../../firebase';
+import { db, storage } from '../../firebase';
 import { doc, updateDoc, onSnapshot, getDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getColorFromInitials } from '../../Utils/avatarUtils';
 import img1 from './../../Img/cat-1.jpg'; // Default image
 
 function Profile() {
     const navigate = useNavigate();
     const { userId } = useParams(); // Optional ID from URL
     const { user: currentUser } = useUser();
+    const fileInputRef = useRef(null);
 
     // Determine whose profile we are viewing
     // If no userId param, it's MY profile. If param exists, check if it matches me.
@@ -23,6 +26,7 @@ function Profile() {
     const [photoURL, setPhotoURL] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
     const [isEditing, setIsEditing] = useState(false);
 
@@ -51,6 +55,37 @@ function Profile() {
         return () => unsubscribe();
     }, [targetUserId]);
 
+    // Handle Image Selection & Upload
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setUploading(true);
+        setMessage({ type: '', text: '' }); // Clear previous messages
+        try {
+            const storageRef = ref(storage, `profile_images/${currentUser.uid}`);
+            await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(storageRef);
+
+            setPhotoURL(downloadURL);
+            // Auto-save the new photo right away to the database
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, { photoURL: downloadURL });
+
+            setMessage({ type: 'success', text: 'Profile photo updated successfully!' });
+            setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+        } catch (error) {
+            console.error("Upload failed", error);
+            setMessage({ type: 'error', text: 'Failed to upload image. Please try again.' });
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const triggerFileInput = () => {
+        fileInputRef.current?.click();
+    };
+
     // 3. Handle Update (Only allowed if isMyProfile)
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -64,7 +99,7 @@ function Profile() {
             await updateDoc(userRef, {
                 displayName: displayName,
                 status: status,
-                photoURL: photoURL
+                // photoURL is updated directly by handleImageChange
             });
 
             setMessage({ type: 'success', text: 'Profile updated successfully!' });
@@ -100,22 +135,39 @@ function Profile() {
                     <FaArrowLeft size={18} color="#4A5568" />
                 </button>
 
-                <div className="profile-image-section">
-                    <img src={photoURL || img1} alt="profile" />
+                {/* Hidden File Input */}
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
+                    accept="image/*"
+                />
 
-                    <a
-                        href={photoURL || img1}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="view-photo-btn"
-                        title="View Full Image"
-                    >
-                        <FaExpand size={14} />
-                    </a>
+                <div className="profile-image-section">
+                    {photoURL ? (
+                        <img src={photoURL} alt="profile" />
+                    ) : (
+                        <div className="fallback-avatar-large" style={{ backgroundColor: getColorFromInitials(displayName) }}>
+                            {displayName ? displayName.charAt(0).toUpperCase() : 'U'}
+                        </div>
+                    )}
+
+                    {photoURL && (
+                        <a
+                            href={photoURL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="view-photo-btn"
+                            title="View Full Image"
+                        >
+                            <FaExpand size={14} />
+                        </a>
+                    )}
 
                     {isEditing && isMyProfile && (
-                        <div className="camera-icon">
-                            <FaCamera />
+                        <div className="camera-icon" onClick={triggerFileInput}>
+                            {uploading ? <div className="spinner-small"></div> : <FaCamera />}
                         </div>
                     )}
                 </div>
@@ -173,17 +225,7 @@ function Profile() {
                         )}
                     </div>
 
-                    {isEditing && (
-                        <div className='Infos editable'>
-                            <small className="label">Photo URL</small>
-                            <input
-                                type="text"
-                                value={photoURL}
-                                onChange={(e) => setPhotoURL(e.target.value)}
-                                placeholder="https://example.com/avatar.jpg"
-                            />
-                        </div>
-                    )}
+                    {/* Removed Manual Photo URL Input - Use Camera Icon to Upload */}
 
                     <div className={`Infos bio ${isEditing ? 'editable' : ''}`}>
                         <small className="label">About / Status</small>
@@ -206,14 +248,14 @@ function Profile() {
                                 type="button"
                                 className="cancel-btn"
                                 onClick={() => setIsEditing(false)}
-                                disabled={loading}
+                                disabled={loading || uploading}
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
                                 className="save-btn"
-                                disabled={loading}
+                                disabled={loading || uploading}
                             >
                                 {loading ? 'Saving...' : <><FaSave /> Save Changes</>}
                             </button>

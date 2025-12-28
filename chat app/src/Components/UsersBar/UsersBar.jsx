@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useUser } from '../../Context/UserContext'
 import { db } from '../../firebase'
 import { collection, query, onSnapshot, where } from 'firebase/firestore'
+import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils'
 
 function UsersBar() {
     const navigate = useNavigate()
@@ -97,11 +98,22 @@ function UsersBar() {
         return { activeChats: active, findFriends: friends };
     }, [users, search, conversations, currentUser])
 
+    const renderAvatar = (user, isLarge = false) => {
+        if (user?.photoURL) {
+            return <img src={user.photoURL} alt="avatar" />;
+        }
+        return (
+            <div className="fallback-avatar-small" style={{ backgroundColor: getColorFromInitials(user?.displayName || user?.email) }}>
+                {getInitials(user?.displayName || user?.email)}
+            </div>
+        );
+    };
+
     return (
         <div className='UsersContainer'>
             <div className='CurrentUserHeader' onClick={() => navigate('/Profile')}>
                 <div className='imageWrapper'>
-                    <img src={currentUser?.photoURL || img1} alt="me" />
+                    {renderAvatar(currentUser)}
                 </div>
                 <div className='UserInfo'>
                     <h6>My Profile</h6>
@@ -140,7 +152,7 @@ function UsersBar() {
                                         onClick={() => navigate(`/Messaging/${user.id}`)}
                                     >
                                         <div className='imageWrapper'>
-                                            <img src={user.photoURL || img1} alt="img" />
+                                            {renderAvatar(user)}
                                         </div>
                                         <div className='UserInfo'>
                                             <h6>{user.displayName || user.email.split('@')[0]}</h6>
@@ -162,7 +174,7 @@ function UsersBar() {
                                         onClick={() => navigate(`/Messaging/${user.id}`)}
                                     >
                                         <div className='imageWrapper'>
-                                            <img src={user.photoURL || img1} alt="img" />
+                                            {renderAvatar(user)}
                                         </div>
                                         <div className='UserInfo'>
                                             <h6>{user.displayName || user.email.split('@')[0]}</h6>

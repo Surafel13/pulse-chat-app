@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import img1 from './../../Img/cat-1.jpg'
 import { useUser } from '../../Context/UserContext';
 import { getUser } from '../../Users/Users';
+import { getColorFromInitials } from '../../Utils/avatarUtils';
 
 function Messaging() {
   const { receiverId } = useParams();
@@ -49,7 +50,24 @@ function Messaging() {
                     ←
                   </button>
                   <div className='imageWrapper'>
-                    <img src={receiver?.photoURL || img1} alt="img" />
+                    {receiver?.photoURL ? (
+                      <img src={receiver.photoURL} alt="img" />
+                    ) : (
+                      <div style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: '700',
+                        fontSize: '1.2rem',
+                        background: getColorFromInitials(receiver?.displayName)
+                      }}>
+                        {receiver?.displayName ? receiver.displayName.charAt(0).toUpperCase() : '?'}
+                      </div>
+                    )}
                   </div>
                   <div className='NameContainer'>
                     <h6>{receiver?.displayName || (receiver?.email && receiver.email.split('@')[0]) || "Chat"}</h6>

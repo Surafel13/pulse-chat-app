@@ -1,5 +1,5 @@
 import React from 'react'
-import img1 from './../../Img/cat-1.jpg'
+
 import './UsersBar.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useUser } from '../../Context/UserContext'

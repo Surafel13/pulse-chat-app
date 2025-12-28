@@ -3,10 +3,10 @@ import MessagingPage from '../ChatPage/MessagingPage';
 import UsersBar from '../UsersBar/UsersBar';
 import './Messaging.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import img1 from './../../Img/cat-1.jpg'
+
 import { useUser } from '../../Context/UserContext';
 import { getUser } from '../../Users/Users';
-import { getColorFromInitials } from '../../Utils/avatarUtils';
+import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils';
 
 function Messaging() {
   const { receiverId } = useParams();
@@ -65,7 +65,7 @@ function Messaging() {
                         fontSize: '1.2rem',
                         background: getColorFromInitials(receiver?.displayName)
                       }}>
-                        {receiver?.displayName ? receiver.displayName.charAt(0).toUpperCase() : '?'}
+                        {getInitials(receiver?.displayName)}
                       </div>
                     )}
                   </div>

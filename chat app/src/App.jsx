@@ -28,7 +28,6 @@ function App() {
         <Route path="/Messaging/:receiverId" element={<Messaging />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Profile/:userId" element={<Profile />} />
-        {/* Redirect old UsersBar route to new integrated Messaging view */}
         <Route path="/UsersBar" element={<Messaging />} />
       </Routes>
 

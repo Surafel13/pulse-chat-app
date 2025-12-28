@@ -3,11 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaCamera, FaSave, FaUserEdit, FaExpand } from "react-icons/fa";
 import './Profile.css';
 import { useUser } from '../../Context/UserContext';
-import { db, storage } from '../../firebase';
+import { db } from '../../firebase';
 import { doc, updateDoc, onSnapshot, getDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { getColorFromInitials } from '../../Utils/avatarUtils';
-import img1 from './../../Img/cat-1.jpg'; // Default image
+import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils';
+import { compressImage } from '../../Utils/imageUtils';
+
 
 function Profile() {
     const navigate = useNavigate();
@@ -55,7 +55,7 @@ function Profile() {
         return () => unsubscribe();
     }, [targetUserId]);
 
-    // Handle Image Selection & Upload
+    // Handle Image Selection & Upload (Base64 to Firestore)
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -63,20 +63,20 @@ function Profile() {
         setUploading(true);
         setMessage({ type: '', text: '' }); // Clear previous messages
         try {
-            const storageRef = ref(storage, `profile_images/${currentUser.uid}`);
-            await uploadBytes(storageRef, file);
-            const downloadURL = await getDownloadURL(storageRef);
+            // Compress image to Base64 string (~300px width)
+            const base64Image = await compressImage(file, 300, 0.7);
 
-            setPhotoURL(downloadURL);
-            // Auto-save the new photo right away to the database
+            setPhotoURL(base64Image);
+
+            // Save the string directly to Firestore
             const userRef = doc(db, "users", currentUser.uid);
-            await updateDoc(userRef, { photoURL: downloadURL });
+            await updateDoc(userRef, { photoURL: base64Image });
 
             setMessage({ type: 'success', text: 'Profile photo updated successfully!' });
             setTimeout(() => setMessage({ type: '', text: '' }), 3000);
         } catch (error) {
             console.error("Upload failed", error);
-            setMessage({ type: 'error', text: 'Failed to upload image. Please try again.' });
+            setMessage({ type: 'error', text: 'Failed to update image. File might be too large or invalid.' });
         } finally {
             setUploading(false);
         }
@@ -149,7 +149,7 @@ function Profile() {
                         <img src={photoURL} alt="profile" />
                     ) : (
                         <div className="fallback-avatar-large" style={{ backgroundColor: getColorFromInitials(displayName) }}>
-                            {displayName ? displayName.charAt(0).toUpperCase() : 'U'}
+                            {getInitials(displayName)}
                         </div>
                     )}
 

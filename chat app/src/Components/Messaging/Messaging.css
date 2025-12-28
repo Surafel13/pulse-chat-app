@@ -87,6 +87,17 @@
     gap: 15px;
 }
 
+.imageWrapper {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .imageWrapper img {
     width: 45px;
     height: 45px;

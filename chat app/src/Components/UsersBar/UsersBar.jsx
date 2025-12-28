@@ -99,6 +99,17 @@ function UsersBar() {
 
     return (
         <div className='UsersContainer'>
+            <div className='CurrentUserHeader' onClick={() => navigate('/Profile')}>
+                <div className='imageWrapper'>
+                    <img src={currentUser?.photoURL || img1} alt="me" />
+                </div>
+                <div className='UserInfo'>
+                    <h6>My Profile</h6>
+                    <p>{currentUser?.displayName || "Set your name"}</p>
+                </div>
+                <div className="settings-icon">⚙️</div>
+            </div>
+
             <div className='barHeader'>
                 <h4>Chats</h4>
             </div>

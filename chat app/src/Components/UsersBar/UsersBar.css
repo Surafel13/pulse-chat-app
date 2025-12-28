@@ -9,16 +9,48 @@
   overflow: hidden;
 }
 
+.CurrentUserHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid #edf2f7;
+}
+
+.CurrentUserHeader:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 136, 204, 0.15);
+  border-color: #bee3f8;
+}
+
+.settings-icon {
+  font-size: 1.2rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.CurrentUserHeader:hover .settings-icon {
+  opacity: 1;
+}
+
 .barHeader {
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .barHeader h4 {
   margin: 0;
   font-weight: 800;
-  font-size: 1.5rem;
-  color: #1a202c;
-  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .InputWrapper {

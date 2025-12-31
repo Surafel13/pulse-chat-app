@@ -3,6 +3,8 @@ import MessagingPage from '../ChatPage/MessagingPage';
 import UsersBar from '../UsersBar/UsersBar';
 import './Messaging.css'
 import { useNavigate, useParams } from 'react-router-dom';
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from '../../firebase';
 
 import { useUser } from '../../Context/UserContext';
 import { getUser } from '../../Users/Users';
@@ -16,13 +18,22 @@ function Messaging() {
   const [settingBar, setSettingBar] = useState(false)
 
   useEffect(() => {
-    if (receiverId) {
-      getUser(receiverId).then(data => {
-        setReceiver(data);
-      });
-    } else {
+    if (!receiverId) {
       setReceiver(null);
+      return;
     }
+
+    const docRef = doc(db, "users", receiverId);
+
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setReceiver({ id: docSnap.id, ...docSnap.data() });
+      } else {
+        setReceiver(null);
+      }
+    });
+
+    return () => unsubscribe();
   }, [receiverId]);
 
   useEffect(() => {
@@ -75,10 +86,14 @@ function Messaging() {
                         {getInitials(receiver?.displayName)}
                       </div>
                     )}
+                    {/* Add online dot in header too */}
+                    {receiver?.isOnline && <div className="online-dot-header"></div>}
                   </div>
                   <div className='NameContainer'>
                     <h6>{receiver?.displayName || (receiver?.email && receiver.email.split('@')[0]) || "Chat"}</h6>
-                    <p>{receiver ? "Online" : "..."}</p>
+                    <p style={{ color: receiver?.isOnline ? '#48bb78' : '#a0aec0' }}>
+                      {receiver?.isOnline ? "Online" : "Offline"}
+                    </p>
                   </div>
                 </div>
 

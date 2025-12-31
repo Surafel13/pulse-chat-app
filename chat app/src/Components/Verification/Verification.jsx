@@ -67,6 +67,12 @@ function Verification() {
 
     const handleLogout = async () => {
         try {
+            if (auth.currentUser) {
+                await updateDoc(doc(db, "users", auth.currentUser.uid), {
+                    isOnline: false,
+                    lastSeen: new Date()
+                });
+            }
             await signOut(auth);
             navigate('/');
         } catch (error) {

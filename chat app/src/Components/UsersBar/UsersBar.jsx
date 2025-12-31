@@ -165,6 +165,7 @@ function UsersBar() {
                                     >
                                         <div className='imageWrapper'>
                                             {renderAvatar(user)}
+                                            {user.isOnline && <span className="online-dot"></span>}
                                         </div>
                                         <div className='UserInfo'>
                                             <h6>{user.displayName || (user.email ? user.email.split('@')[0] : 'User')}</h6>
@@ -187,6 +188,7 @@ function UsersBar() {
                                     >
                                         <div className='imageWrapper'>
                                             {renderAvatar(user)}
+                                            {user.isOnline && <span className="online-dot"></span>}
                                         </div>
                                         <div className='UserInfo'>
                                             <h6>{user.displayName || (user.email ? user.email.split('@')[0] : 'User')}</h6>

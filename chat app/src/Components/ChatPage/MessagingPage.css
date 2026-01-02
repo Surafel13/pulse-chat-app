@@ -29,55 +29,77 @@
     border-radius: 3px;
 }
 
-/* Message Bubbles - Logical Naming */
+/* Message Bubbles - Modern Look */
 .MessageSelf,
 .MessageOthers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.message-content {
     max-width: 75%;
-    padding: 10px 16px;
+    padding: 12px 16px;
     font-size: 0.95rem;
     line-height: 1.5;
     position: relative;
     word-wrap: break-word;
 }
 
-/* Me / The User (Right Side - Standard Chat App Behavior) */
 .MessageSelf {
-    align-self: flex-end;
-    background: #1488cc;
-    color: white;
-    border-radius: 18px 18px 4px 18px;
-    /* Tail bottom-right */
-    box-shadow: 0 4px 12px rgba(20, 136, 204, 0.2);
+    align-items: flex-end;
 }
 
-/* Others / The Sender (Left Side - Standard Chat App Behavior) */
+.MessageSelf .message-content {
+    background: linear-gradient(135deg, #1488cc, #2b32b2);
+    color: white;
+    border-radius: 20px 20px 4px 20px;
+    box-shadow: 0 4px 15px rgba(20, 136, 204, 0.2);
+}
+
 .MessageOthers {
-    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.MessageOthers .message-content {
     background: #ffffff;
     color: #2d3748;
-    border-radius: 4px 18px 18px 18px;
-    /* Tail bottom-left */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 20px 20px 20px 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid #edf2f7;
 }
 
-/* Message Text */
-.MessageSelf p,
-.MessageOthers p {
+/* Empty State Placeholder */
+.empty-chat-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    opacity: 0.6;
+    color: #64748b;
+}
+
+.empty-chat-placeholder .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Message Text Adjustments */
+.message-content p {
     margin: 0;
 }
 
-/* Timestamp */
-.MessageSelf small,
-.MessageOthers small {
+.message-content small {
     display: block;
-    font-size: 0.7rem;
-    margin-top: 4px;
-    opacity: 1;
+    font-size: 0.65rem;
+    margin-top: 6px;
+    font-weight: 600;
 }
 
 .MessageSelf small {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     text-align: right;
 }
 
@@ -86,59 +108,68 @@
     text-align: left;
 }
 
-/* Input Area (Bottom) */
+/* Input Area - Redesigned */
 .bottomWrapper {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     background: white;
-    border-top: 1px solid #edf2f7;
+    border-top: 1px solid #f1f5f9;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.bottomWrapper input {
+.input-field {
     flex: 1;
-    padding: 12px 20px;
-    border-radius: 14px;
-    border: 1px solid #e2e8f0;
-    background-color: #f7fafc;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-    outline: none;
+    background: #f1f5f9;
+    padding: 2px 4px;
+    border-radius: 24px;
+    transition: all 0.3s ease;
 }
 
-.bottomWrapper input:focus {
-    background-color: white;
-    border-color: #1488cc;
+.input-field:focus-within {
+    background: #fff;
     box-shadow: 0 0 0 3px rgba(20, 136, 204, 0.1);
+    border: 1px solid #1488cc;
 }
 
-.bottomWrapper button {
-    height: 44px;
-    padding: 0 24px;
-    border-radius: 12px;
+.input-field input {
+    width: 100%;
+    padding: 10px 16px;
     border: none;
-    background: #1488cc;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: transparent;
+    font-size: 0.95rem;
+    outline: none;
+    color: #1e293b;
+}
+
+.send-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f5f9;
+    color: #94a3b8;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.5;
-    pointer-events: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
 }
 
-.bottomWrapper button.sendData {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.bottomWrapper button.sendData:hover {
-    background: #107bb8;
-    transform: translateY(-1px);
+.send-button.active {
+    background: #1488cc;
+    color: white;
     box-shadow: 0 4px 12px rgba(20, 136, 204, 0.3);
+}
+
+.send-button.active:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.send-button:disabled {
+    cursor: default;
 }
 
 /* Mobile Responsive */

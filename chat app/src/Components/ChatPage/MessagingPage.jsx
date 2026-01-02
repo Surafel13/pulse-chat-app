@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import './MessagingPage.css'
-import { db } from '../../firebase'
-import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, where } from 'firebase/firestore'
+import React, { useState, useEffect, useRef } from 'react';
+import './MessagingPage.css';
+import { db } from '../../firebase';
+import { collection, addDoc, query, onSnapshot, serverTimestamp, where } from 'firebase/firestore';
+import { IoSend } from "react-icons/io5";
 
 function MessagingPage({ receiverId, currentUser }) {
     const [message, setMessage] = useState("")
@@ -87,8 +88,9 @@ function MessagingPage({ receiverId, currentUser }) {
         <div className='ChatSection'>
             <div className='MessagingArea'>
                 {messages.length === 0 ? (
-                    <div className="text-center text-muted mt-5">
-                        <p>No messages yet. Say hi! 👋</p>
+                    <div className="empty-chat-placeholder">
+                        <div className="icon">👋</div>
+                        <p>No messages yet. Start the conversation!</p>
                     </div>
                 ) : (
                     messages.map((msg) => (
@@ -96,34 +98,39 @@ function MessagingPage({ receiverId, currentUser }) {
                             key={msg.id}
                             className={msg.senderId === currentUser.uid ? 'MessageSelf' : 'MessageOthers'}
                         >
-                            <p>{msg.text}</p>
-                            <small>
-                                {msg.timestamp?.toDate ?
-                                    msg.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                                    : 'Sending...'}
-                            </small>
+                            <div className="message-content">
+                                <p>{msg.text}</p>
+                                <small>
+                                    {msg.timestamp?.toDate ?
+                                        msg.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                        : 'Sending...'}
+                                </small>
+                            </div>
                         </div>
                     ))
                 )}
                 <div ref={messagesEndRef} />
             </div>
             <div className='bottomWrapper'>
-                <input
-                    type="text"
-                    placeholder='Write Something... '
-                    onChange={(e) => setMessage(e.target.value)}
-                    value={message}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                />
+                <div className="input-field">
+                    <input
+                        type="text"
+                        placeholder='Type a message... '
+                        onChange={(e) => setMessage(e.target.value)}
+                        value={message}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                    />
+                </div>
                 <button
-                    className={`${message === "" ? '' : 'sendData'}`}
+                    className={`send-button ${message.trim() !== "" ? 'active' : ''}`}
                     onClick={handleSend}
+                    disabled={message.trim() === ""}
                 >
-                    Send
+                    <IoSend />
                 </button>
             </div>
         </div>
     )
 }
 
-export default MessagingPage
+export default MessagingPage;

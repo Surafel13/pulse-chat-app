@@ -47,8 +47,8 @@ function Auth() {
                 email: user.email,
                 displayName: user.displayName || user.email.split('@')[0],
                 lastSeen: new Date(),
-                isVerified: true,
-                photoURL: user.photoURL || null
+                isVerified: true
+                // Note: photoURL is deliberately excluded to prioritize user-uploaded images
             }, { merge: true });
 
             navigate("/Messaging");

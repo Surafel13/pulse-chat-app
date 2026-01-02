@@ -6,6 +6,7 @@ import { useUser } from '../../Context/UserContext'
 import { db } from '../../firebase'
 import { collection, query, onSnapshot, where } from 'firebase/firestore'
 import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils'
+import { formatLastSeen } from '../../Utils/timeUtils'
 
 function UsersBar() {
     const navigate = useNavigate()
@@ -192,7 +193,7 @@ function UsersBar() {
                                         </div>
                                         <div className='UserInfo'>
                                             <h6>{user.displayName || (user.email ? user.email.split('@')[0] : 'User')}</h6>
-                                            <p>Start a new chat</p>
+                                            <p>{user.isOnline ? "Online" : `Last seen ${formatLastSeen(user.lastSeen)}`}</p>
                                         </div>
                                     </div>
                                 ))}

@@ -9,6 +9,7 @@ import { db } from '../../firebase';
 import { useUser } from '../../Context/UserContext';
 import { getUser } from '../../Users/Users';
 import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils';
+import { formatLastSeen } from '../../Utils/timeUtils';
 
 function Messaging() {
   const { receiverId } = useParams();
@@ -92,7 +93,7 @@ function Messaging() {
                   <div className='NameContainer'>
                     <h6>{receiver?.displayName || (receiver?.email && receiver.email.split('@')[0]) || "Chat"}</h6>
                     <p style={{ color: receiver?.isOnline ? '#48bb78' : '#a0aec0' }}>
-                      {receiver?.isOnline ? "Online" : "Offline"}
+                      {receiver?.isOnline ? "Online" : `Last seen ${formatLastSeen(receiver?.lastSeen)}`}
                     </p>
                   </div>
                 </div>

@@ -9,12 +9,20 @@
     flex-direction: column;
 }
 
-/* Back button */
-.back-btn {
+/* Header Actions */
+.header-actions {
     position: absolute;
     top: 24px;
     left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 50;
+}
+
+.back-btn,
+.logout-btn-top {
     background: #ffffff;
     border: none;
     border-radius: 14px;
@@ -27,15 +35,24 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(0, 0, 0, 0.02);
+    color: #4a5568;
 }
 
-.back-btn:hover {
+.back-btn:hover,
+.logout-btn-top:hover {
     transform: scale(1.1);
     background: #1488cc;
+    color: white !important;
 }
 
-.back-btn:hover svg {
+.back-btn:hover svg,
+.logout-btn-top:hover svg {
     color: white !important;
+}
+
+.logout-btn-top:hover {
+    background: #e53e3e;
+    /* Red for logout */
 }
 
 /* User Image Section */

@@ -32,7 +32,8 @@ export const UserProvider = ({ children }) => {
                     uid: authInstance.uid,
                     email: authInstance.email,
                     emailVerified: authInstance.emailVerified,
-                    displayName: authInstance.displayName // Fallback name
+                    displayName: authInstance.displayName, // Fallback name
+                    photoURL: null // Force null so it must come from Firestore
                 };
 
                 setUser(sanitizedAuthUser);
@@ -67,14 +68,19 @@ export const UserProvider = ({ children }) => {
         });
 
         const handleVisibilityChange = () => {
-            if (auth.currentUser) {
-                updateStatus(auth.currentUser.uid, document.visibilityState === 'visible');
+            const currentUid = auth.currentUser?.uid;
+            if (currentUid) {
+                const isVisible = document.visibilityState === 'visible';
+                updateStatus(currentUid, isVisible);
             }
         };
 
         const handleUnload = () => {
-            if (auth.currentUser) {
-                updateStatus(auth.currentUser.uid, false);
+            const currentUid = auth.currentUser?.uid;
+            if (currentUid) {
+                // navigator.sendBeacon could be used for more reliability, 
+                // but let's stick to the promise for now as sendBeacon doesn't work with Firestore SDK easily
+                updateStatus(currentUid, false);
             }
         };
 

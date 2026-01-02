@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft, FaCamera, FaSave, FaUserEdit, FaExpand } from "react-icons/fa";
+import { FaArrowLeft, FaCamera, FaSave, FaUserEdit, FaExpand, FaSignOutAlt } from "react-icons/fa";
 import './Profile.css';
 import { useUser } from '../../Context/UserContext';
-import { db } from '../../firebase';
-import { doc, updateDoc, onSnapshot, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
+import { signOut } from 'firebase/auth';
+import { doc, updateDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { getColorFromInitials, getInitials } from '../../Utils/avatarUtils';
 import { compressImage } from '../../Utils/imageUtils';
 
@@ -122,11 +123,24 @@ function Profile() {
 
     const handleBack = () => {
         if (userId) {
-            // If viewing someone else, go back to chat with them
             navigate(`/Messaging/${userId}`);
         } else {
-            // If viewing my own setting, go to main list
             navigate('/Messaging');
+        }
+    };
+
+    const handleLogout = async () => {
+        if (!window.confirm("Are you sure you want to sign out?")) return;
+        try {
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, {
+                isOnline: false,
+                lastSeen: serverTimestamp()
+            });
+            await signOut(auth);
+            navigate('/');
+        } catch (error) {
+            console.error("Logout Error:", error);
         }
     };
 
@@ -134,9 +148,16 @@ function Profile() {
         <div className='ProfileContainer'>
             {/* Header / Cover Area */}
             <div className='UserInfoWrapper'>
-                <button className="back-btn" onClick={handleBack}>
-                    <FaArrowLeft size={18} color="#4A5568" />
-                </button>
+                <div className="header-actions">
+                    <button className="back-btn" onClick={handleBack}>
+                        <FaArrowLeft size={18} color="#4A5568" />
+                    </button>
+                    {isMyProfile && (
+                        <button className="logout-btn-top" onClick={handleLogout} title="Sign Out">
+                            <FaSignOutAlt size={18} />
+                        </button>
+                    )}
+                </div>
 
                 {/* Hidden File Input */}
                 <input

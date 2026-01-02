@@ -145,10 +145,41 @@
 @media (max-width: 768px) {
     .MessagingArea {
         padding: 1rem;
+        gap: 8px;
     }
 
-    .SenderMessage,
-    .ReciverMessage {
+    .MessageSelf,
+    .MessageOthers {
         max-width: 85%;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    .bottomWrapper {
+        padding: 0.75rem 1rem;
+        gap: 8px;
+    }
+
+    .bottomWrapper input {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .bottomWrapper button {
+        padding: 0 16px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .MessageSelf,
+    .MessageOthers {
+        max-width: 90%;
+    }
+
+    .bottomWrapper {
+        padding: 0.5rem 0.75rem;
     }
 }

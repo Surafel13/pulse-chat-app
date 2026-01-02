@@ -270,6 +270,7 @@
 @media (max-width: 768px) {
     .ChatDashboard {
         height: 100vh;
+        width: 100vw;
     }
 
     .SidebarSection {
@@ -279,31 +280,35 @@
         top: 0;
         left: 0;
         height: 100%;
+        z-index: 30;
     }
 
     .SidebarSection.show-mobile {
         display: block;
-        animation: slideInLeft 0.3s ease-out;
+        animation: slideInFromLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @keyframes slideInLeft {
+    @keyframes slideInFromLeft {
         from {
-            transform: translateX(-20px);
-            opacity: 0;
+            transform: translateX(-100%);
         }
 
         to {
             transform: translateX(0);
-            opacity: 1;
         }
-    }
-
-    .ChattingPage.hide-mobile {
-        display: none;
     }
 
     .ChattingPage {
         width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        z-index: 20;
+    }
+
+    .ChattingPage.hide-mobile {
+        display: none;
     }
 
     .mobileOnly {
@@ -313,45 +318,57 @@
     .backButton {
         background: #f1f5f9 !important;
         border: none !important;
-        font-size: 1.2rem !important;
+        font-size: 1.5rem !important;
         color: #475569 !important;
-        width: 40px !important;
-        height: 40px !important;
+        width: 44px !important;
+        height: 44px !important;
         border-radius: 12px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        margin-right: 8px;
+        margin-right: 12px;
         cursor: pointer;
-        transition: var(--transition-smooth);
+        transition: all 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
 
     .backButton:active {
-        transform: scale(0.9);
+        transform: scale(0.95);
+        background: #e2e8f0 !important;
     }
 
     .HeaderWrapper {
         padding: 0 1rem;
-        height: 70px;
+        height: 65px;
+        border-bottom: 2px solid #f1f5f9;
     }
 
     .imageWrapper {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
     }
 
     .NameContainer h6 {
         font-size: 1rem;
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .NameContainer p {
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
-    .emptyContent h3 {
-        font-size: 1.5rem;
+    .EmptyChatState {
+        display: none;
+        /* Already handled by hide-mobile but just in case */
     }
 
-    .chatIcon {
-        font-size: 4rem;
+    .NameContainer h6 {
+        max-width: 120px;
     }
 }

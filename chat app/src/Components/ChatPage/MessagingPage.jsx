@@ -108,23 +108,19 @@ function MessagingPage({ receiverId, currentUser }) {
                 <div ref={messagesEndRef} />
             </div>
             <div className='bottomWrapper'>
-                <div>
-                    <input
-                        type="text"
-                        placeholder='Write Something... '
-                        onChange={(e) => setMessage(e.target.value)}
-                        value={message}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                    />
-                </div>
-                <div>
-                    <button
-                        className={`${message === "" ? '' : 'sendData'}`}
-                        onClick={handleSend}
-                    >
-                        Send
-                    </button>
-                </div>
+                <input
+                    type="text"
+                    placeholder='Write Something... '
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                />
+                <button
+                    className={`${message === "" ? '' : 'sendData'}`}
+                    onClick={handleSend}
+                >
+                    Send
+                </button>
             </div>
         </div>
     )
